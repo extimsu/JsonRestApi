@@ -1,6 +1,6 @@
 # JsonRestApi
 
-A Golang project.
+Rest Api with gin framework
 
 ## Getting started
 

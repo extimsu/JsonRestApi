@@ -1,24 +1,16 @@
 package main
 
 import (
-	"flag"
-	"github.com/extimsu/JsonRestApi/version"
-	
+	"github.com/extimsu/JsonRestApi/db"
+	"github.com/extimsu/JsonRestApi/routes"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	db.InitDB()
+	server := gin.Default()
 
-    
-	versionFlag := flag.Bool("version", false, "Version")
-	flag.Parse()
+	routes.RegisterRoutes(server)
 
-	if *versionFlag {
-		fmt.Println("Build Date:", version.BuildDate)
-        fmt.Println("Git Commit:", version.GitCommit)
-        fmt.Println("Version:", version.Version)
-        fmt.Println("Go Version:", version.GoVersion)
-        fmt.Println("OS / Arch:", version.OsArch)
-		return
-	}
-    
+	server.Run(":8080")
 }
